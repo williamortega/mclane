@@ -1,7 +1,7 @@
 {
-  "name": "mclane-default",
+  "name": "mclane-warehouse",
   "description": "N/A",
-  "type": "magento2-module",
+  "type": "magento2-theme",
   "version": "1.0.0",
   "require": {
     "magento/framework": "*"
