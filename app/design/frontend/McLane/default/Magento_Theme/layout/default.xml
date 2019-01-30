@@ -8,5 +8,8 @@
         <referenceBlock name="form.subscribe" remove="true" />
         <referenceBlock name="footer_links" remove="true" />
         <referenceBlock name="report.bugs" remove="true" />
+
+        <!-- Move Authorization link to header like My Account link -->
+        <move element="authorization-link" destination="header-wrapper" />
     </body>
 </page>
