@@ -1,6 +1,6 @@
 <?php
 
-namespace McLane\Multistore\Plugin\Customer;
+namespace McLane\User\Plugin\Customer;
 
 
 use Magento\Customer\Controller\Account\LoginPost;

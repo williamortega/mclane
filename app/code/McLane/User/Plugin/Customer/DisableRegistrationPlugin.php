@@ -1,6 +1,6 @@
 <?php
 
-namespace McLane\Registration\Plugin\Customer\Model\Registration;
+namespace McLane\User\Plugin\Customer;
 
 
 use Magento\Customer\Model\Registration;

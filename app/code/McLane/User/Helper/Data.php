@@ -1,6 +1,6 @@
 <?php
 
-namespace McLane\Multistore\Helper;
+namespace McLane\User\Helper;
 
 
 use Magento\Customer\Model\Session;

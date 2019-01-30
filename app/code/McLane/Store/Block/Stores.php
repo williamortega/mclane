@@ -1,6 +1,6 @@
 <?php
 
-namespace McLane\Multistore\Block;
+namespace McLane\Store\Block;
 
 
 use Magento\Framework\View\Element\Template;
