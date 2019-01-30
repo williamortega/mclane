@@ -1,0 +1,13 @@
+<?php
+/** @var \McLane\Multistore\Block\Stores $block */
+?>
+<?php if($block->isLoggedIn()): ?>
+<div class="multistore-block">
+    <p><?= __('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque erat. Vestibulum ante ipsum primis.') ?></p>
+    <?php foreach ($block->getStores() as $store): ?>
+        <a href="<?= $block->escapeUrl($store['url']) ?>" title="<?= $block->escapeHtmlAttr($store['name']) ?>">
+            <?= $block->escapeHtml($store['name']) ?>
+        </a>
+    <?php endforeach ?>
+</div>
+<?php endif ?>

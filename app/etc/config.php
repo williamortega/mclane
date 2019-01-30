@@ -189,6 +189,7 @@ return [
         'Magento_CatalogWidget' => 1,
         'Dotdigitalgroup_Email' => 1,
         'Magento_WishlistAnalytics' => 1,
+        'McLane_Multistore' => 1,
         'McLane_Registration' => 1,
         'Temando_Shipping' => 1,
         'Vertex_Tax' => 1

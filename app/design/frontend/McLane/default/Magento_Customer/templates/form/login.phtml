@@ -8,6 +8,7 @@
 
 /** @var \Magento\Customer\Block\Form\Login $block */
 ?>
+<?php if (!$this->helper('McLane\Multistore\Helper\Data')->isCustomerLoggedIn()): ?>
 <div class="block block-customer-login">
     <div class="block-content" aria-labelledby="block-customer-login-heading">
         <form class="form form-login"
@@ -40,4 +41,4 @@
         </form>
     </div>
 </div>
-
+<?php endif ?>
