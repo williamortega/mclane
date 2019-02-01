@@ -4,7 +4,8 @@
   "type": "magento2-module",
   "version": "1.0.0",
   "require": {
-    "magento/framework": "*"
+    "magento/framework": "*",
+    "magento/module-ui": "101.1.*"
   },
   "license": [
     "OSL-3.0",

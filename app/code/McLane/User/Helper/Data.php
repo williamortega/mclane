@@ -11,15 +11,15 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * @var Session
      */
-    protected $_session;
+    protected $customerSession;
 
     /**
      * @inheritDoc
      */
-    public function __construct(Context $context, Session $session)
+    public function __construct(Context $context, Session $customerSession)
     {
         parent::__construct($context);
-        $this->_session = $session;
+        $this->customerSession = $customerSession;
     }
 
     /**
@@ -29,6 +29,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function isCustomerLoggedIn()
     {
-        return $this->_session->isLoggedIn();
+        return $this->customerSession->isLoggedIn();
     }
 }

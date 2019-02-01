@@ -5,16 +5,10 @@ namespace McLane\Store\Block;
 
 use Magento\Customer\Model\Session;
 use Magento\Framework\View\Element\Template;
-use Magento\Framework\App\Http\Context;
 use Magento\Store\Model\StoreManagerInterface;
 
 class Stores extends Template
 {
-    /**
-     * @var Context
-     */
-    protected $httpContext;
-
     /**
      * @var StoreManagerInterface
      */
@@ -23,32 +17,20 @@ class Stores extends Template
     /**
      * @var Session
      */
-    protected $_customerSession;
+    protected $customerSession;
 
     /**
      * @inheritDoc
      */
     public function __construct(
         Template\Context $context,
-        Context $httpContext,
         StoreManagerInterface $storeManager,
         Session $customerSession,
         array $data = []
     ) {
         parent::__construct($context, $data);
-        $this->httpContext = $httpContext;
         $this->_storeManager = $storeManager;
-        $this->_customerSession = $customerSession;
-    }
-
-    /**
-     * Check if user has session.
-     *
-     * @return bool
-     */
-    public function isLoggedIn()
-    {
-        return (bool)$this->httpContext->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH);
+        $this->customerSession = $customerSession;
     }
 
     /**
@@ -82,8 +64,8 @@ class Stores extends Template
      *
      * @return string
      */
-    public function getSIDSession()
+    protected function getSIDSession()
     {
-        return $this->_customerSession->getSessionId();
+        return $this->customerSession->getSessionId();
     }
 }

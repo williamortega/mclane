@@ -1,0 +1,10 @@
+<?php
+/** @var \McLane\Store\Block\Main $block */
+?>
+<div class="main-store-block">
+    <?php if (!$block->isCustomerLoggedIn()): ?>
+        <?= $block->getChildChildHtml('mclane_store_container_login') ?>
+    <?php else: ?>
+        <?= $block->getChildChildHtml('mclane_store_container_catalog') ?>
+    <?php endif ?>
+</div>
