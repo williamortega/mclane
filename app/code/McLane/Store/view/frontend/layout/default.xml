@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="2columns-right" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="McLane\Store\Block\Main" name="mclane.store.main" template="McLane_Store::main.phtml" cacheable="false">
+                <!-- Add login form to Home page. -->
+                <container name="mclane.store.container.login" as="mclane_store_container_login">
+                    <!-- customer.form.login.extra -->
+                    <container name="customer.login.container" label="Customer Login Container" htmlTag="div" htmlClass="login-container">
+                        <block class="Magento\Customer\Block\Form\Login" name="customer_form_login" template="Magento_Customer::form/login.phtml">
+                            <container name="form.additional.info" as="form_additional_info"/>
+                        </block>
+                    </container>
+                    <block class="Magento\Cookie\Block\RequireCookie" name="require-cookie" template="Magento_Cookie::require_cookie.phtml">
+                        <arguments>
+                            <argument name="triggers" xsi:type="array">
+                                <item name="loginButton" xsi:type="string">.action.login</item>
+                            </argument>
+                        </arguments>
+                    </block>
+                </container>
+                <!-- This container have stores page or will have catalog from another themes. -->
+                <container name="mclane.store.container.catalog" as="mclane_store_container_catalog" htmlTag="div" htmlClass="mclane_stores">
+                    <block class="McLane\Store\Block\Stores" name="mclane.store.stores" template="McLane_Store::stores.phtml" />
+                </container>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="content.aside">
+            <block class="McLane\Store\Block\Cart" name="mclane.store.block.cart" as="mclane_store_block_cart" template="McLane_Store::cart.phtml">
+
+            </block>
+        </referenceContainer>
+    </body>
+</page>

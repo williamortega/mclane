@@ -10,6 +10,6 @@
         <referenceBlock name="report.bugs" remove="true" />
 
         <!-- Move Authorization link to header like My Account link -->
-        <move element="authorization-link" destination="header-wrapper" />
+        <move element="authorization-link" destination="header-wrapper" before="minicart"/>
     </body>
 </page>
