@@ -1,6 +1,7 @@
 <?php
-/** @var \McLane\Store\Block\Cart $block */
+/** @var $block \McLane\Store\Block\Cart */
 ?>
+<?php if ($this->helper('McLane\User\Helper\Data')->isCustomerLoggedIn()): ?>
 <div class="mclane-store-block-cart">
     <h3><?= __('Your Cart') ?></h3>
     <?php if ($block->showCart()): ?>
@@ -8,6 +9,7 @@
         <p><?= __('Your truck is $1 full', 70) ?></p>
         <small><?= __('Max one truck per order.') ?></small>
     <?php endif ?>
-    <?php //print $block->getBlockHtml('') ?>
-    <?php //print $block->getBlockHtml('') ?>
+    <?php print $block->getBlockHtml('mclane.store.block.items') ?>
+    <?php print $block->getBlockHtml('mclane.store.block.subtotal') ?>
 </div>
+<?php endif ?>

@@ -1,0 +1,12 @@
+<?php
+/** @var \McLane\Store\Block\Items $block */
+?>
+<ul>
+    <?php foreach ($block->getItems() as $item): ?>
+        <li>
+            <p><?= $item->getName() ?></p>
+            <strong><?= __('Quantity:') ?> <?= $item->getQty() ?></strong><br/>
+            <strong><?= __('Price:') ?> <?= $this->helper('Magento\Checkout\Helper\Data')->formatPrice($item->getPrice()) ?></strong>
+        </li>
+    <?php endforeach ?>
+</ul>

@@ -1,0 +1,6 @@
+<?php
+/** @var \McLane\Store\Block\Items $block */
+?>
+<p><?= __('Delivery Fee:') ?> Sales rep will contact you</p>
+<strong><?= __('Subtotal:') ?> <?= $this->helper('Magento\Checkout\Helper\Data')->formatPrice($block->getSubTotal()) ?></strong><br/>
+<a href="<?= $this->getUrl('checkout') ?>"><?= __('Check Out') ?></a>

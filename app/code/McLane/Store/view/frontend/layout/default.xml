@@ -6,6 +6,7 @@
  */
 -->
 <page layout="2columns-right" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="checkout_cart_sidebar_item_renderers"/>
     <body>
         <referenceContainer name="content">
             <block class="McLane\Store\Block\Main" name="mclane.store.main" template="McLane_Store::main.phtml" cacheable="false">
@@ -32,8 +33,9 @@
             </block>
         </referenceContainer>
         <referenceContainer name="content.aside">
-            <block class="McLane\Store\Block\Cart" name="mclane.store.block.cart" as="mclane_store_block_cart" template="McLane_Store::cart.phtml">
-
+            <block class="McLane\Store\Block\Cart" name="mclane.store.block.cart" as="mclane_store_block_cart" template="McLane_Store::checkout/cart.phtml">
+                <block class="McLane\Store\Block\Items" name="mclane.store.block.items" as="mclane_store_block_items" template="McLane_Store::checkout/items.phtml"/>
+                <block class="McLane\Store\Block\Items" name="mclane.store.block.subtotal" as="mclane_store_block_subtotal" template="McLane_Store::checkout/subtotal.phtml"/>
             </block>
         </referenceContainer>
     </body>
