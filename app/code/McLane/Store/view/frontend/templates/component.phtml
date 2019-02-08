@@ -1,0 +1,32 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+
+$viewModel = $block->getData('viewModel');
+?>
+<div class="mclane-store-component" data-bind="scope: 'mclane-store-component'">
+    <h3><?= __('Your Cart') ?></h3>
+    <ul>
+        <!--ko foreach: {data: getItems(), as: 'item'} -->
+            <li>
+                <p data-bind="text: item.name"></p>
+                <strong><?= __('Quantity:') ?> <span data-bind="text: item.qty"></span></strong><br/>
+                <strong><?= __('Price:') ?> <span data-bind="html: item.price"></span></strong>
+            </li>
+        <!--/ko-->
+    </ul>
+</div>
+
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "mclane-store-component": {
+                    "component": "McLane_Store/js/component",
+                    "items": <?= $viewModel->getItems() ?>
+                }
+            }
+        }
+    }
+}
+</script>
