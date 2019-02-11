@@ -34,8 +34,16 @@
         </referenceContainer>
         <referenceContainer name="content.aside">
             <block class="McLane\Store\Block\Cart" name="mclane.store.block.cart" as="mclane_store_block_cart" template="McLane_Store::checkout/cart.phtml">
-                <block class="McLane\Store\Block\Items" name="mclane.store.block.items" as="mclane_store_block_items" template="McLane_Store::checkout/items.phtml"/>
-                <block class="McLane\Store\Block\Items" name="mclane.store.block.subtotal" as="mclane_store_block_subtotal" template="McLane_Store::checkout/subtotal.phtml"/>
+                <block class="Magento\Framework\View\Element\Template" name="mclane.store.cart.items" template="McLane_Store::checkout/items.phtml">
+                    <arguments>
+                        <argument name="viewModel" xsi:type="object">McLane\Store\ViewModel\Cart</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Framework\View\Element\Template" name="mclane.store.cart.subtotal" as="mclane_store_block_subtotal" template="McLane_Store::checkout/subtotal.phtml">
+                    <arguments>
+                        <argument name="viewModel" xsi:type="object">McLane\Store\ViewModel\Cart</argument>
+                    </arguments>
+                </block>
             </block>
         </referenceContainer>
     </body>

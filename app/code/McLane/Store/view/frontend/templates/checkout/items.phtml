@@ -1,12 +1,28 @@
 <?php
-/** @var \McLane\Store\Block\Items $block */
+/** @var \Magento\Framework\View\Element\Template $block */
+
+$viewModel = $block->getData('viewModel');
 ?>
-<ul>
-    <?php foreach ($block->getItems() as $item): ?>
-        <li>
-            <p><?= $item->getName() ?></p>
-            <strong><?= __('Quantity:') ?> <?= $item->getQty() ?></strong><br/>
-            <strong><?= __('Price:') ?> <?= $this->helper('Magento\Checkout\Helper\Data')->formatPrice($item->getPrice()) ?></strong>
-        </li>
-    <?php endforeach ?>
+<ul data-bind="scope: 'mclane_store_cart_items'">
+    <!-- ko foreach: {data: getItems(), as: 'item'} -->
+    <li>
+        <p data-bind="text: item.name"></p>
+        <strong><?= __('Quantity:') ?> <span data-bind="text: item.qty"></span></strong><br/>
+        <strong><?= __('Price:') ?> <span data-bind="html: item.price"></span></strong>
+    </li>
+    <!-- /ko -->
 </ul>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "mclane_store_cart_items": {
+                    "component": "McLane_Store/js/cart-items",
+                    "items": <?= $viewModel->getItems() ?>
+                }
+            }
+        }
+    }
+}
+</script>

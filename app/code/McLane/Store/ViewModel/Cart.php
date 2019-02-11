@@ -6,9 +6,8 @@ namespace McLane\Store\ViewModel;
 use Magento\Checkout\Model\Session;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\Checkout\Helper\Data;
-use Psr\Log\LoggerInterface;
 
-class CartItems implements ArgumentInterface
+class Cart implements ArgumentInterface
 {
     /**
      * @var Session
@@ -20,21 +19,19 @@ class CartItems implements ArgumentInterface
      */
     protected $_helper;
 
-    /**
-     * @var LoggerInterface
-     */
-    protected $_log;
-
     public function __construct(
         Session $session,
-        Data $helper,
-        LoggerInterface $log
+        Data $helper
     ) {
         $this->_session = $session;
         $this->_helper = $helper;
-        $this->_log = $log;
     }
 
+    /**
+     * Return a list of products of cart.
+     *
+     * @return string
+     */
     public function getItems()
     {
         $result = [];
@@ -47,5 +44,21 @@ class CartItems implements ArgumentInterface
         }
 
         return json_encode($result);
+    }
+
+    /**
+     * Gets a subtotal from cart.
+     *
+     * @return string
+     */
+    public function getSubtotal()
+    {
+        $price = $this->_session->getQuote()->getSubtotal();
+        $output = [
+            'hasSubtotal' => $price > 0,
+            'price' => $this->_helper->formatPrice($price),
+        ];
+
+        return json_encode($output);
     }
 }
