@@ -1,0 +1,60 @@
+/////////////////////////////////////////
+/// Form Style
+/////////////////////////////////////////
+
+.column:not(.sidebar-main) form .actions-toolbar {
+    margin: 0;
+    text-align: center;
+}
+
+.actions-toolbar .primary {
+    float: none;
+    margin: 0 auto;
+}
+
+.action.primary {
+    background: @green;
+    border: 1px solid @green;
+    border-radius: 50px;
+    color: @white;
+    text-transform: uppercase;
+    min-width: 150px;
+    padding: 0 20px;
+    line-height: 52px;
+    font-weight: 700;
+}
+
+.action.primary:hover {
+    color: @white;
+    background: @green;
+    border: 1px solid @green;
+}
+
+.form label {
+    font-weight: 700;
+}
+
+.form .input-text {
+    background: @gray-darken0;
+    border: 0;
+    border-radius: 0;
+    padding: 12px;
+    height: 50px;
+}
+
+.form textarea.input-text {
+    height: initial;
+}
+
+.form .fieldset > .field > .control {
+    width: 100%;
+    float: none;
+}
+
+.fieldset > .field > .label {
+    margin-bottom: .5rem;
+}
+
+.form .fieldset > .field:not(.choice) > .label {
+    text-align: left;
+}

@@ -12,5 +12,17 @@
 
         <!-- Move Authorization link to header like My Account link -->
         <move element="authorization-link" destination="header-wrapper" before="minicart"/>
+
+        <!-- Logo -->
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/logo.png</argument>
+                <argument name="logo_img_width" xsi:type="number">233</argument>
+                <argument name="logo_img_height" xsi:type="number">61</argument>
+            </arguments>
+        </referenceBlock>
+
+        <!-- Move Miscellaneous HTML to footer -->
+        <move element="absolute_footer" destination="footer" after="copyright" />
     </body>
 </page>
