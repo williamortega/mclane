@@ -7,7 +7,7 @@ use Magento\Customer\Model\Session;
 use Magento\Framework\View\Element\Template;
 use Magento\Store\Model\StoreManagerInterface;
 
-class Stores extends Template
+class Store extends Template
 {
     /**
      * @var StoreManagerInterface
@@ -17,7 +17,7 @@ class Stores extends Template
     /**
      * @var Session
      */
-    protected $customerSession;
+    protected $_customerSession;
 
     /**
      * @inheritDoc
@@ -30,7 +30,7 @@ class Stores extends Template
     ) {
         parent::__construct($context, $data);
         $this->_storeManager = $storeManager;
-        $this->customerSession = $customerSession;
+        $this->_customerSession = $customerSession;
     }
 
     /**
@@ -66,6 +66,6 @@ class Stores extends Template
      */
     protected function getSIDSession()
     {
-        return $this->customerSession->getSessionId();
+        return $this->_customerSession->getSessionId();
     }
 }

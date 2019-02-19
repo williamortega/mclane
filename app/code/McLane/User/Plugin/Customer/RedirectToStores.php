@@ -16,7 +16,7 @@ class RedirectToStores
      */
     public function afterExecute(LoginPost $subject, $result)
     {
-        $result->setPath('/');
+        $result->setPath('store');
         return $result;
     }
 }
