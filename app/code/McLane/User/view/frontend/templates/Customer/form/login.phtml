@@ -6,13 +6,13 @@
 
 // @codingStandardsIgnoreFile
 
-/** @var \Magento\Customer\Block\Form\Login $block */
+/** @var \McLane\User\Block\Login $block */
 ?>
-<?php if (!$this->helper('McLane\User\Helper\Data')->isCustomerLoggedIn()): ?>
+<?php if (!$block->isLoggedIn()): ?>
 <div class="block block-customer-login login-content">
     <div class="block-content" aria-labelledby="block-customer-login-heading">
         <form class="form form-login"
-              action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>"
+              action="<?= $block->escapeUrl($block->getBlockLogin()->getPostActionUrl()) ?>"
               method="post"
               id="login-form"
               data-mage-init='{"validation":{}}'>
@@ -21,13 +21,13 @@
                 <div class="field email required">
                     <label class="label" for="email"><span><?= $block->escapeHtml(__('User Email')) ?></span></label>
                     <div class="control">
-                        <input name="login[username]" value="<?= $block->escapeHtmlAttr($block->getUsername()) ?>" <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?> id="email" type="email" class="input-text" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true, 'validate-email':true}">
+                        <input name="login[username]" value="<?= $block->escapeHtmlAttr($block->getBlockLogin()->getUsername()) ?>" <?php if ($block->getBlockLogin()->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?> id="email" type="email" class="input-text" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true, 'validate-email':true}">
                     </div>
                 </div>
                 <div class="field password required">
                     <label for="pass" class="label"><span><?= $block->escapeHtml(__('Password')) ?></span></label>
                     <div class="control">
-                        <input name="login[password]" type="password" <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?> class="input-text" id="pass" title="<?= $block->escapeHtmlAttr(__('Password')) ?>" data-validate="{required:true}">
+                        <input name="login[password]" type="password" <?php if ($block->getBlockLogin()->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?> class="input-text" id="pass" title="<?= $block->escapeHtmlAttr(__('Password')) ?>" data-validate="{required:true}">
                     </div>
                 </div>
                 <?= $block->getChildHtml('form_additional_info') ?>
