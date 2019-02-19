@@ -1,18 +1,6 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <!-- Remove blocks -->
-        <referenceBlock name="header.panel" remove="true" />
-        <referenceBlock name="top.search" remove="true" />
-        <referenceBlock name="minicart" remove="true" />
-        <referenceBlock name="form.subscribe" remove="true" />
-        <referenceBlock name="footer_links" remove="true" />
-        <referenceBlock name="report.bugs" remove="true" />
-        <referenceBlock name="content.aside" remove="true" />
-
-        <!-- Move Authorization link to header like My Account link -->
-        <move element="authorization-link" destination="header-wrapper" before="minicart"/>
-
         <!-- Logo -->
         <referenceBlock name="logo">
             <arguments>
@@ -21,8 +9,7 @@
                 <argument name="logo_img_height" xsi:type="number">61</argument>
             </arguments>
         </referenceBlock>
-
-        <!-- Move Miscellaneous HTML to footer -->
-        <move element="absolute_footer" destination="footer" after="copyright" />
+        <!-- Move Authorization link to header like My Account link -->
+        <move element="authorization-link" destination="header-wrapper" before="minicart"/>
     </body>
 </page>
