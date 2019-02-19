@@ -16,8 +16,9 @@
         <referenceBlock name="footer_links" remove="true" />
         <referenceBlock name="copyright" remove="true" />
         <referenceBlock name="report.bugs" remove="true" />
+        <!-- Show miscellaneous to all stores -->
         <referenceBlock name="footer">
-            <block class="Magento\Cms\Block\Block" name="mclane.warehouse.products" before="-">
+            <block class="Magento\Cms\Block\Block" name="mclane.themesettings.copyright" before="-">
                 <arguments>
                     <argument name="block_id" xsi:type="string">miscellaneous_footer</argument>
                 </arguments>
