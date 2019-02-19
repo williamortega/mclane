@@ -190,6 +190,7 @@ return [
         'Dotdigitalgroup_Email' => 1,
         'Magento_WishlistAnalytics' => 1,
         'McLane_Store' => 1,
+        'McLane_Themesettings' => 1,
         'McLane_User' => 1,
         'Temando_Shipping' => 1,
         'Vertex_Tax' => 1
