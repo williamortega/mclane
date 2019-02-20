@@ -17,12 +17,12 @@ class Login extends Template
     /**
      * @var CustomerLogin
      */
-    protected $_login;
+    protected $login;
 
     /**
      * @var Session
      */
-    protected $_customerSession;
+    protected $customerSession;
 
     /**
      * Login constructor.
@@ -30,7 +30,6 @@ class Login extends Template
      * @param Template\Context $context
      * @param Session $customerSession
      * @param CustomerLogin $login
-     * @param LoggerInterface $log
      * @param array $data
      */
     public function __construct(
@@ -40,8 +39,8 @@ class Login extends Template
         array $data = []
     ) {
         parent::__construct($context, $data);
-        $this->_login = $login;
-        $this->_customerSession = $customerSession;
+        $this->login = $login;
+        $this->customerSession = $customerSession;
     }
 
     /**
@@ -62,7 +61,7 @@ class Login extends Template
      */
     public function getBlockLogin()
     {
-        return $this->_login;
+        return $this->login;
     }
 
     /**
@@ -72,6 +71,6 @@ class Login extends Template
      */
     public function isLoggedIn()
     {
-        return $this->_customerSession->isLoggedIn();
+        return $this->customerSession->isLoggedIn();
     }
 }

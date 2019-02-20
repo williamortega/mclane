@@ -13,12 +13,12 @@ class Index extends Action
     /**
      * @var Session
      */
-    protected $_customerSession;
+    protected $customerSession;
 
     /**
      * @var PageFactory
      */
-    protected $_pageFactory;
+    protected $pageFactory;
 
     /**
      * Index constructor.
@@ -32,8 +32,8 @@ class Index extends Action
         PageFactory $pageFactory,
         Session $customerSession
     ) {
-        $this->_customerSession = $customerSession;
-        $this->_pageFactory = $pageFactory;
+        $this->customerSession = $customerSession;
+        $this->pageFactory = $pageFactory;
         parent::__construct($context);
     }
 
@@ -42,10 +42,10 @@ class Index extends Action
      */
     public function execute()
     {
-        if (!$this->_customerSession->isLoggedIn()) {
+        if (!$this->customerSession->isLoggedIn()) {
             return $this->_redirect('/');
         }
 
-        return $this->_pageFactory->create();
+        return $this->pageFactory->create();
     }
 }
