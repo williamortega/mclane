@@ -4,33 +4,34 @@ namespace McLane\Store\Block;
 
 
 use Magento\Customer\Model\Session;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\Template;
-use Magento\Store\Model\StoreManagerInterface;
+use Psr\Log\LoggerInterface;
 
 class Store extends Template
 {
-    /**
-     * @var StoreManagerInterface
-     */
-    protected $_storeManager;
-
     /**
      * @var Session
      */
     protected $_customerSession;
 
     /**
+     * @var LoggerInterface
+     */
+    protected $_log;
+
+    /**
      * @inheritDoc
      */
     public function __construct(
         Template\Context $context,
-        StoreManagerInterface $storeManager,
         Session $customerSession,
+        LoggerInterface $log,
         array $data = []
     ) {
         parent::__construct($context, $data);
-        $this->_storeManager = $storeManager;
         $this->_customerSession = $customerSession;
+        $this->_log = $log;
     }
 
     /**
@@ -42,16 +43,23 @@ class Store extends Template
     {
         $stores = [];
 
-        $list = $this->_storeManager->getStores();
-        foreach ($list as $store) {
-            if ($store->getCode() != 'default') {
-                if ($store->getIsActive()) {
-                    $url = $store->getBaseUrl() . 'stores/store/switch?SID=' . $this->getSIDSession();
-                    $stores[] = [
-                        'name' => $store->getName(),
-                        'code' => $store->getCode(),
-                        'url' => $url,
-                    ];
+        if ($currentStoreCode = $this->getCurrentStore()) {
+            $list = $this->_storeManager->getStores();
+            foreach ($list as $store) {
+                /** @var \Magento\Store\Api\Data\StoreInterface $store */
+                if ($store->getCode() !== $currentStoreCode) {
+                    if ($store->getIsActive()) {
+                        /*$url = $this->getUrl('stores/store/switch', [
+                            'SID' => $this->_customerSession->getSessionId(),
+                            '___store' => $store->getCode(),
+                            '___from_store' => $currentStoreCode,
+                        ]);*/
+                        $url = $store->getBaseUrl() . "stores/store/switch?___SID={$this->_customerSession->getSessionId()}&___from_store={$currentStoreCode}";
+                        $stores[] = [
+                            'name' => $store->getName(),
+                            'url' => $url,
+                        ];
+                    }
                 }
             }
         }
@@ -60,12 +68,20 @@ class Store extends Template
     }
 
     /**
-     * Gets SID of current user.
+     * Gets current store
      *
-     * @return string
+     * @return null|string
      */
-    protected function getSIDSession()
+    protected function getCurrentStore()
     {
-        return $this->_customerSession->getSessionId();
+        try {
+            $storeCode = $this->_storeManager->getStore()->getCode();
+        }
+        catch (NoSuchEntityException $e) {
+            $this->_log->critical($e->getMessage());
+            $storeCode = null;
+        }
+
+        return $storeCode;
     }
 }
