@@ -13,12 +13,12 @@ class Store extends Template
     /**
      * @var Session
      */
-    protected $_customerSession;
+    protected $customerSession;
 
     /**
      * @var LoggerInterface
      */
-    protected $_log;
+    protected $log;
 
     /**
      * @inheritDoc
@@ -30,9 +30,22 @@ class Store extends Template
         array $data = []
     ) {
         parent::__construct($context, $data);
-        $this->_customerSession = $customerSession;
-        $this->_log = $log;
+        $this->customerSession = $customerSession;
+        $this->log = $log;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function _prepareLayout()
+    {
+        $name = $this->customerSession
+            ->getCustomer()
+            ->getName();
+        $this->pageConfig->getTitle()->set(__('Welcome, %1', $name));
+        return parent::_prepareLayout();
+    }
+
 
     /**
      * Gets all available stores.
@@ -54,7 +67,7 @@ class Store extends Template
                             '___store' => $store->getCode(),
                             '___from_store' => $currentStoreCode,
                         ]);*/
-                        $url = $store->getBaseUrl() . "stores/store/switch?___SID={$this->_customerSession->getSessionId()}&___from_store={$currentStoreCode}";
+                        $url = $store->getBaseUrl() . "stores/store/switch?___SID={$this->customerSession->getSessionId()}&___from_store={$currentStoreCode}";
                         $stores[] = [
                             'name' => $store->getName(),
                             'url' => $url,
@@ -78,7 +91,7 @@ class Store extends Template
             $storeCode = $this->_storeManager->getStore()->getCode();
         }
         catch (NoSuchEntityException $e) {
-            $this->_log->critical($e->getMessage());
+            $this->log->critical($e->getMessage());
             $storeCode = null;
         }
 
