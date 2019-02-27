@@ -8,9 +8,21 @@
             <?= __('Change') ?>
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <?php foreach ($block->getStores() as $store): ?>
+                <a class="dropdown-item" href="<?= $store['url'] ?>">
+                    <?= $block->escapeHtml($store['name']) ?>
+                </a>
+            <?php endforeach ?>
         </div>
     </div>
 </div>
+<script type="text/x-magento-init">
+{
+    ".dropdown-item": {
+        "McLane_Store/js/abandoned-cart": {
+            "title": "<?= $block->escapeHtml(__('Are you sure you want to leave your cart?')) ?>",
+            "content": "<?= $block->escapeHtml(__('You still have items and will lose them. Continue?')) ?>"
+        }
+    }
+}
+</script>

@@ -10,6 +10,12 @@ use Psr\Log\LoggerInterface;
 
 class Store extends Template
 {
+    /**#@+
+     * Code to default store view
+     */
+    const DEFAULT_STORE = 'default';
+    /**#@-*/
+
     /**
      * @var Session
      */
@@ -60,7 +66,8 @@ class Store extends Template
             $list = $this->_storeManager->getStores();
             foreach ($list as $store) {
                 /** @var \Magento\Store\Api\Data\StoreInterface $store */
-                if ($store->getCode() !== $currentStoreCode) {
+                // Remove current and default store view code
+                if (!in_array($store->getCode(), [self::DEFAULT_STORE, $currentStoreCode])) {
                     if ($store->getIsActive()) {
                         /*$url = $this->getUrl('stores/store/switch', [
                             'SID' => $this->_customerSession->getSessionId(),

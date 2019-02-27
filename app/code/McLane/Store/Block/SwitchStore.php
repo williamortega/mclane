@@ -10,6 +10,11 @@ use Psr\Log\LoggerInterface;
 class SwitchStore extends Template
 {
     /**
+     * @var Store
+     */
+    protected $store;
+
+    /**
      * @var LoggerInterface
      */
     protected $log;
@@ -19,11 +24,13 @@ class SwitchStore extends Template
      */
     public function __construct(
         Template\Context $context,
+        Store $store,
         LoggerInterface $logger,
         array $data = []
     ) {
         parent::__construct($context, $data);
         $this->log = $logger;
+        $this->store = $store;
     }
 
     /**
@@ -40,5 +47,15 @@ class SwitchStore extends Template
             $this->log->notice($e->getMessage());
         }
         return $store;
+    }
+
+    /**
+     * Get stores based on Store block
+     *
+     * @return array
+     */
+    public function getStores()
+    {
+        return $this->store->getStores();
     }
 }
