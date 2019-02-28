@@ -3,18 +3,17 @@
 namespace McLane\Store\Block;
 
 
+use Magento\Framework\View\Element\Template;
 use Magento\Customer\Model\Session;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\View\Element\Template;
 use Psr\Log\LoggerInterface;
 
 class Store extends Template
 {
-    /**#@+
+    /**
      * Code to default store view
      */
     const DEFAULT_STORE = 'default';
-    /**#@-*/
 
     /**
      * @var Session
@@ -24,7 +23,7 @@ class Store extends Template
     /**
      * @var LoggerInterface
      */
-    protected $log;
+    protected $logger;
 
     /**
      * @inheritDoc
@@ -32,26 +31,13 @@ class Store extends Template
     public function __construct(
         Template\Context $context,
         Session $customerSession,
-        LoggerInterface $log,
+        LoggerInterface $logger,
         array $data = []
     ) {
-        parent::__construct($context, $data);
         $this->customerSession = $customerSession;
-        $this->log = $log;
+        $this->logger = $logger;
+        parent::__construct($context, $data);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function _prepareLayout()
-    {
-        $name = $this->customerSession
-            ->getCustomer()
-            ->getName();
-        $this->pageConfig->getTitle()->set(__('Welcome, %1', $name));
-        return parent::_prepareLayout();
-    }
-
 
     /**
      * Gets all available stores.
@@ -98,7 +84,7 @@ class Store extends Template
             $storeCode = $this->_storeManager->getStore()->getCode();
         }
         catch (NoSuchEntityException $e) {
-            $this->log->critical($e->getMessage());
+            $this->logger->critical($e->getMessage());
             $storeCode = null;
         }
 

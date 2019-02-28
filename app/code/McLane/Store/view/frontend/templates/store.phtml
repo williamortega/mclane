@@ -1,6 +1,9 @@
 <?php
 /** @var \McLane\Store\Block\Store $block */
 ?>
+<h2 data-bind="scope: 'store_welcome'">
+    <?= $block->escapeHtml(__('Welcome')) ?><span data-bind="text: customer"></span>
+</h2>
 <p><?= __('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque erat. Vestibulum ante ipsum primis.') ?></p>
 <?php foreach ($block->getStores() as $store): ?>
     <a href="<?= $block->escapeUrl($store['url']) ?>" title="<?= $block->escapeHtmlAttr($store['name']) ?>" class="rounded">
@@ -8,3 +11,16 @@
         <?= $block->escapeHtml($store['name']) ?>
     </a>
 <?php endforeach ?>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "store_welcome": {
+                    "component": "McLane_Store/js/store"
+                }
+            }
+        }
+    }
+}
+</script>
