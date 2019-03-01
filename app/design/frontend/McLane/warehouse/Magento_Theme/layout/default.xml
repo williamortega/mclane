@@ -2,6 +2,21 @@
 <page layout="2columns-left" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+        <referenceBlock name="navigation.sections" remove="true" />
+        <referenceBlock name="breadcrumbs" remove="true" />
+        <referenceBlock name="page.main.title" remove="true" />
         <referenceBlock name="minicart" remove="false" />
+        <referenceBlock name="mclane.block.switchstore" remove="false" />
+
+        <referenceBlock name="top.container">
+            <block class="Magento\Cms\Block\Block" name="special.promotional">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">special_promotion</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceBlock name="content.top">
+            <!-- Back to page link here. -->
+        </referenceBlock>
     </body>
 </page>
