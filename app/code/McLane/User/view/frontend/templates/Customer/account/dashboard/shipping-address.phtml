@@ -1,0 +1,26 @@
+<?php
+/** @var \McLane\User\Block\ShippingAddress $block */
+?>
+<?php
+// It will add number to each address.
+$count = 1;
+?>
+<div class="block block-dashboard-addresses">
+    <div class="block-content">
+        <?php foreach ($block->getShippingAddresses() as $address): ?>
+            <div class="box-shipping-address">
+                <strong class="box-title">
+                    <?= $block->escapeHtml(__('Shipping Address %1', $count++)) ?>
+                </strong>
+                <div class="box-content">
+                    <address>
+                        <?= $block->escapeHtml(implode($address->getStreet())) ?>,
+                        <?= $block->escapeHtml($address->getCity()) ?>,
+                        <?= $block->escapeHtml($address->getRegion()->getRegionCode()) ?>
+                        <?= $block->escapeHtml($address->getPostcode()) ?>
+                    </address>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
